@@ -19,6 +19,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// ✅ Handle preflight requests (important)
+app.options('*', cors());
+
 // ✅ Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
