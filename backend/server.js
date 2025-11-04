@@ -8,12 +8,13 @@ const app = express();
 // ✅ Middleware
 app.use(cors({
   origin: [
-    "https://makeover-website2.onrender.com",
-    "https://makeover-website.onrender.com",
-    "http://localhost:5000",
-    "http://127.0.0.1:5500",
     "https://makeoverbyreet.com",
-    "https://www.makeoverbyreet.com"
+    "https://www.makeoverbyreet.com",
+    "http://makeoverbyreet.com",
+    "http://www.makeoverbyreet.com",
+    "https://makeover-website.onrender.com",
+    "https://makeover-website2.onrender.com",
+    "http://localhost:5000"
   ],
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true,
