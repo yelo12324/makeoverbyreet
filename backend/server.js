@@ -10,8 +10,6 @@ app.use(cors({
   origin: [
     "https://makeoverbyreet.com",
     "https://www.makeoverbyreet.com",
-    "http://makeoverbyreet.com",
-    "http://www.makeoverbyreet.com",
     "https://makeover-website.onrender.com",
     "https://makeover-website2.onrender.com",
     "http://localhost:5000"
