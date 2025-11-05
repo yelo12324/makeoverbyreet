@@ -27,10 +27,8 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));  // ✅ This is enough
-
-// ✅ Handle preflight requests (Express 5 requires new wildcard syntax)
-app.options("(.*)", cors(corsOptions));
+// ✅ USE CORS (this alone handles preflight too)
+app.use(cors(corsOptions));
 
 // ✅ Middleware
 app.use(express.json());
