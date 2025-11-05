@@ -12,6 +12,7 @@ const allowedOrigins = [
   "https://makeover-website.onrender.com",
   "https://makeover-website2.onrender.com",
   "http://localhost:5000",
+  "https://makeoverbyreet.com/#contact"
 ];
 
 const corsOptions = {
@@ -22,13 +23,10 @@ const corsOptions = {
       callback(new Error("CORS policy violation"));
     }
   },
-  methods: ["GET", "POST", "OPTIONS"],
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// ✅ USE CORS (this alone handles preflight too)
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // ✅ This line MUST be above all routes
 
 // ✅ Middleware
 app.use(express.json());
