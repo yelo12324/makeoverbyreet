@@ -71,44 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => showSlide(currentSlide + 1), 5000);
 });
 
-// // ===== Swiper Initialization =====
-// document.addEventListener('DOMContentLoaded', () => {
-//   // If the Swiper library isn't loaded, exit gracefully
-//   if (typeof Swiper === 'undefined') {
-//     // You must include Swiper core script before this file
-//     console.warn('Swiper not found. Make sure the Swiper CDN script is loaded before swiper-init.js');
-//     return;
-//   }
-
-//   try {
-//     const swiper = new Swiper('.mySwiper', {
-//       loop: true,
-//       autoplay: {
-//         delay: 4000,
-//         disableOnInteraction: false,
-//       },
-//       speed: 800,
-//       pagination: {
-//         el: '.swiper-pagination',
-//         clickable: true,
-//       },
-//       slidesPerView: 1,
-//       spaceBetween: 20,
-//       // responsive breakpoints if you later want multiple slides per view
-//       breakpoints: {
-//         640: {
-//           slidesPerView: 1,
-//         },
-//         1024: {
-//           slidesPerView: 1,
-//         },
-//       },
-//     });
-//   } catch (error) {
-//     console.error('Error initializing Swiper:', error);
-//   }
-// });
-
 // ===== Testimonial Carousel =====
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".testimonial-card");

@@ -14,22 +14,23 @@ const allowedOrigins = [
   "http://localhost:5000",
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS policy violation"));
-      }
-    },
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS policy violation"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
 
-// ✅ Handle preflight requests
-app.options("*", cors());
+app.use(cors(corsOptions));
+
+// ✅ Handle preflight requests (Express 5 requires new wildcard syntax)
+app.options("(.*)", cors(corsOptions));
 
 // ✅ Middleware
 app.use(express.json());
@@ -63,11 +64,11 @@ app.post("/contact", async (req, res) => {
     const fullName = `${firstName.trim()} ${lastName.trim()}`;
     const bookingService = service?.trim() || "No service specified";
     const bookingDate = date?.trim() || "No date specified";
-    const userMessage = message?.trim() || "No message provided";
+    const userMessage = (message?.trim() || "No message provided").replace(/\n/g, "<br>");
 
     // 📧 Send email via Resend
     const emailResponse = await resend.emails.send({
-      from: "MakeOver <onboarding@resend.dev>",
+      from: process.env.EMAIL_FROM || "MakeOver <onboarding@resend.dev>", // tip: use your verified domain
       to: process.env.EMAIL_TO || "your@email.com",
       reply_to: email.trim(),
       subject: `New Booking Request from ${fullName}`,
@@ -79,7 +80,7 @@ app.post("/contact", async (req, res) => {
         <p><strong>Service:</strong> ${bookingService}</p>
         <p><strong>Preferred Date:</strong> ${bookingDate}</p>
         <p><strong>Message:</strong></p>
-        <p>${userMessage.replace(/\n/g, "<br>")}</p>
+        <p>${userMessage}</p>
       `.trim(),
     });
 
