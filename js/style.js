@@ -271,7 +271,7 @@ async function handleContactFormSubmit(e) {
         });
 
         // Make the request
-        const res = await fetch('https://makeover-website.onrender.com/contact', {
+        const res = await fetch('https://makeoverbyreet.onrender.com/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
