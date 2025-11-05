@@ -23,7 +23,9 @@ const corsOptions = {
       callback(new Error("CORS policy violation"));
     }
   },
+  methods: ["GET", "POST", "OPTIONS"],
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions)); // ✅ This line MUST be above all routes
