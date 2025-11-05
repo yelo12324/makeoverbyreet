@@ -197,12 +197,43 @@ body.no-scroll {
   display: none;
 }
 
-.hero-content {
-  text-align: center;
-  z-index: 2;
-  max-width: 900px;
-  padding: 2rem;
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);   /* darker overlay so white text stays visible */
+  z-index: 1;
 }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+@media(max-width: 600px) {
+  .hero {
+    height: 85vh; /* reduce height so it doesn’t feel cramped */
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-buttons a {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.8rem;
+  }
+}
+
 
 .hero h1 {
   font-size: 4.5rem;
@@ -1106,7 +1137,7 @@ footer {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-@media (max-width: 868px) {
+@media (max-width: 768px) {
   .mobile-menu-btn {
     display: flex;
   }
